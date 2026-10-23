@@ -2,8 +2,12 @@
   "$schema": "https://aka.ms",
   "CreationDate": "2026-10-23",
   "Packages": [
-    {
-      "PackageIdentifier": "RedHat.Podman"
+    { 
+      "PackageIdentifier": "RedHat.Podman" 
     }
+    // Para adicionar mais ferramentas no futuro sem as instalar já,
+    // basta colocá-las abaixo desta linha mudando o nome do campo para "Inativo"
+    // { "Inativo": "Microsoft.VisualStudioCode" },
+    // { "Inativo": "DominikReichl.KeePass" }
   ]
 }
