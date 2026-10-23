@@ -2,8 +2,8 @@
   "$schema": "https://aka.ms",
   "CreationDate": "2026-10-23",
   "Packages": [
-    { 
-      "PackageIdentifier": "RedHat.Podman" 
+    {
+      "PackageIdentifier": "RedHat.Podman"
     }
   ]
 }
