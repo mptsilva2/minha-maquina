@@ -22,7 +22,9 @@ Instala tambem o WSL2 (necessario para o Podman), cria a VM do Podman e arranca 
 ```
 
 1. Se o WSL nao estiver instalado, o script instala-o e pede para **reiniciar o PC**. Depois de reiniciar, execute `.\setup.ps1` outra vez.
-2. Para cada pacote ja instalado, pergunta se quer procurar nova versao.
+2. Para cada pacote pergunta o que fazer:
+   - `[NOVA INSTALACAO]`: pacote que falta. Enter instala, `n` ignora.
+   - `[ATUALIZACAO]`: pacote ja instalado. `s` procura nova versao, Enter mantem.
 3. Cria e arranca a VM do Podman e instala o certificado Zscaler na VM (se existir na maquina).
 4. Cria o contentor `sqlserver` (pede a password do `sa` na primeira vez).
 

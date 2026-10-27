@@ -20,6 +20,7 @@ Automatizacao do setup de uma maquina Windows de desenvolvimento. Entregue a nov
 - Ferramenta com configuracao propria: criar `-init.ps1` e `-uninstall.ps1` e chama-los em `setup.ps1` e `uninstall.ps1`.
 - Manter `README.md` e este `CLAUDE.md` sempre atualizados: qualquer alteracao a scripts, pacotes ou comportamento inclui a atualizacao dos ficheiros MD.
 - `setup.ps1` e `uninstall.ps1` gravam logs em `logs/` (Start-Transcript); a pasta esta no `.gitignore`.
+- O `setup.ps1` pergunta por cada pacote, com prefixo claro: `[NOVA INSTALACAO]` (Enter instala) ou `[ATUALIZACAO]` (Enter mantem).
 - Operacoes destrutivas (remover VM, WSL, pacotes) pedem sempre confirmacao.
 
 ## Contexto da maquina

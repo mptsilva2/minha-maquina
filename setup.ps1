@@ -32,10 +32,14 @@ foreach ($source in $apps.Sources) {
 
         winget list --id $id --exact --accept-source-agreements *> $null
         if ($LASTEXITCODE -ne 0) {
+            if ((Read-Host "[NOVA INSTALACAO] $id nao esta instalado. Instalar? (S/n)") -eq "n") {
+                Write-Host "$id ignorado."
+                continue
+            }
             Write-Host "A instalar $id..."
             winget install --id $id --exact --accept-package-agreements --accept-source-agreements
             if ($LASTEXITCODE -ne 0) { throw "Falha ao instalar $id." }
-        } elseif ((Read-Host "$id ja esta instalado. Procurar e instalar nova versao, se existir? (s/N)") -eq "s") {
+        } elseif ((Read-Host "[ATUALIZACAO] $id ja esta instalado. Procurar e instalar nova versao, se existir? (s/N)") -eq "s") {
             Write-Host "A procurar nova versao de $id..."
             winget upgrade --id $id --exact --accept-package-agreements --accept-source-agreements
         } else {
