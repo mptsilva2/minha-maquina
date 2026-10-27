@@ -4,13 +4,14 @@ $root = $PSScriptRoot
 New-Item -ItemType Directory -Path "$root\logs" -Force | Out-Null
 Start-Transcript -Path "$root\logs\uninstall-$(Get-Date -Format 'yyyyMMdd-HHmmss').log" | Out-Null
 
-Write-Warning "Isto remove a VM do Podman (com todos os contentores e imagens) e desinstala as aplicacoes de apps-windows.json."
+Write-Warning "Isto remove a VM do Podman (com todos os contentores, imagens e bases de dados SQL Server) e desinstala as aplicacoes de apps-windows.json."
 if ((Read-Host "Continuar? (s/N)") -ne "s") {
     Write-Host "Cancelado."
     exit 0
 }
 
 # 1. Configuracao de cada ferramenta (ordem inversa do setup)
+& "$root\scripts\sqlserver-uninstall.ps1" -Force
 & "$root\scripts\podman-uninstall.ps1"
 
 # 2. Aplicacoes

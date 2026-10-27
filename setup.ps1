@@ -47,6 +47,7 @@ foreach ($source in $apps.Sources) {
 # 3. Configuracao de cada ferramenta
 & "$root\scripts\podman-init.ps1"
 & "$root\scripts\podman-certs.ps1"
+& "$root\scripts\sqlserver-init.ps1"
 
 Write-Host "Setup concluido."
 Stop-Transcript | Out-Null

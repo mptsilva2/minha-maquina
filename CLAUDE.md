@@ -1,5 +1,7 @@
 # minha-maquina
 
+> **Este ficheiro tem de ser mantido atualizado**, tal como o `README.md`, a cada alteracao ao projeto.
+
 Automatizacao do setup de uma maquina Windows de desenvolvimento. Entregue a novos developers da equipa.
 
 ## Estrutura
@@ -25,6 +27,8 @@ Automatizacao do setup de uma maquina Windows de desenvolvimento. Entregue a nov
 - Maquina corporativa com Zscaler (inspecao TLS): a VM do Podman precisa do certificado raiz Zscaler (`scripts/podman-certs.ps1`).
 - Elevacao via Admin By Request. O `setup.ps1` so precisa de administrador para instalar o WSL.
 - Podman corre sobre WSL2.
+- SQL Server em contentor (`scripts/sqlserver-init.ps1`): imagem oficial MCR com a versao definida no topo do script, volume `sqlserver-data`, porta so em 127.0.0.1. A password do `sa` e pedida na criacao e nunca gravada no repositorio. O SSMS corre no Windows.
+- `sqlserver-uninstall.ps1` pede confirmacao, exceto com `-Force` (usado pelo `uninstall.ps1`, que ja confirma).
 
 ## Como trabalhar com o utilizador
 
