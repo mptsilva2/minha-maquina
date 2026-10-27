@@ -6,8 +6,11 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     throw "winget nao encontrado. Instale o 'App Installer' da Microsoft Store."
 }
 
+$ErrorActionPreference = "Continue"
 wsl --status *> $null
-if ($LASTEXITCODE -ne 0) {
+$wslInstalled = ($LASTEXITCODE -eq 0)
+$ErrorActionPreference = "Stop"
+if (-not $wslInstalled) {
     $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
     if (-not $isAdmin) {
         throw "WSL nao esta instalado. Execute este script numa consola PowerShell como administrador."
