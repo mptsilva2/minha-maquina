@@ -1,6 +1,9 @@
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
 
+New-Item -ItemType Directory -Path "$root\logs" -Force | Out-Null
+Start-Transcript -Path "$root\logs\uninstall-$(Get-Date -Format 'yyyyMMdd-HHmmss').log" | Out-Null
+
 Write-Warning "Isto remove a VM do Podman (com todos os contentores e imagens) e desinstala as aplicacoes de apps-windows.json."
 if ((Read-Host "Continuar? (s/N)") -ne "s") {
     Write-Host "Cancelado."
@@ -30,3 +33,4 @@ if ((Read-Host "Desinstalar o WSL? (s/N)") -eq "s") {
 }
 
 Write-Host "Uninstall concluido."
+Stop-Transcript | Out-Null

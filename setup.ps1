@@ -1,6 +1,9 @@
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
 
+New-Item -ItemType Directory -Path "$root\logs" -Force | Out-Null
+Start-Transcript -Path "$root\logs\setup-$(Get-Date -Format 'yyyyMMdd-HHmmss').log" | Out-Null
+
 # 1. Pre-requisitos
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     throw "winget nao encontrado. Instale o 'App Installer' da Microsoft Store."
@@ -46,3 +49,4 @@ foreach ($source in $apps.Sources) {
 & "$root\scripts\podman-certs.ps1"
 
 Write-Host "Setup concluido."
+Stop-Transcript | Out-Null
