@@ -22,10 +22,27 @@ if (-not $wslInstalled) {
 }
 
 # 2. Aplicacoes
-Write-Host "A instalar aplicacoes..."
-winget import --import-file "$root\apps-windows.json" --accept-package-agreements --accept-source-agreements
+$apps = Get-Content "$root\apps-windows.json" -Raw | ConvertFrom-Json
+foreach ($source in $apps.Sources) {
+    foreach ($package in $source.Packages) {
+        $id = $package.PackageIdentifier
+
+        winget list --id $id --exact --accept-source-agreements *> $null
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "A instalar $id..."
+            winget install --id $id --exact --accept-package-agreements --accept-source-agreements
+            if ($LASTEXITCODE -ne 0) { throw "Falha ao instalar $id." }
+        } elseif ((Read-Host "$id ja esta instalado. Procurar e instalar nova versao, se existir? (s/N)") -eq "s") {
+            Write-Host "A procurar nova versao de $id..."
+            winget upgrade --id $id --exact --accept-package-agreements --accept-source-agreements
+        } else {
+            Write-Host "$id mantido."
+        }
+    }
+}
 
 # 3. Configuracao de cada ferramenta
 & "$root\scripts\podman-init.ps1"
+& "$root\scripts\podman-certs.ps1"
 
 Write-Host "Setup concluido."
