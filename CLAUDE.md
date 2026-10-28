@@ -8,6 +8,7 @@ Automatizacao do setup de uma maquina Windows de desenvolvimento. Entregue a nov
 
 - `apps-windows.json`: lista unica de pacotes winget (formato schema 2.0 do `winget import`).
 - `setup.ps1`: ponto de entrada. Verifica WSL, instala/atualiza pacotes, corre os scripts de cada ferramenta.
+- `start-tools.ps1`: arranque diario dos servicos (VM do Podman, SQL Server) com verificacao de que respondem. Cada servico novo entra aqui com um `[OK]`.
 - `uninstall.ps1`: caminho inverso, com confirmacoes.
 - `scripts/<ferramenta>-init.ps1` e `scripts/<ferramenta>-uninstall.ps1`: configuracao e remocao de cada ferramenta.
 

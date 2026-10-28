@@ -36,6 +36,14 @@ Se a politica de execucao bloquear scripts:
 powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
+## Arrancar os servicos (dia a dia)
+
+```powershell
+.\start-tools.ps1
+```
+
+Arranca a VM do Podman e o SQL Server (se estiverem parados, por exemplo depois de reiniciar o PC) e confirma que respondem. Mostra `[OK]` por cada servico. Nao instala nada: se algo nao existir, manda executar o `setup.ps1`.
+
 ## Logs
 
 O `setup.ps1` e o `uninstall.ps1` gravam tudo o que aparece no ecra em `logs/` (por exemplo `logs/setup-20261027-153000.log`). Em caso de problema, envie esse ficheiro. Pode conter caminhos e o nome de utilizador, nao o partilhe publicamente. A pasta nao vai para o git.
