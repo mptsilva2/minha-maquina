@@ -50,7 +50,7 @@ podman run --rm hello-world
 
 Corre em contentor Podman, a partir da imagem oficial da Microsoft (`mcr.microsoft.com/mssql/server:2025-latest`, edicao Developer, apenas para desenvolvimento e testes). A versao da imagem esta no topo de `scripts/sqlserver-init.ps1`.
 
-- Ligacao: servidor `localhost,1433`, utilizador `sa`, com a password que definiu. No SSMS marque "Trust server certificate".
+- Ligacao: servidor `127.0.0.1,1433` (com virgula), utilizador `sa`, com a password que definiu. No SSMS marque "Trust server certificate". Nao use `localhost`: o contentor so escuta em IPv4 e o `localhost` pode tentar o IPv6 (`::1`) e falhar.
 - Acessivel apenas a partir da propria maquina (`127.0.0.1`).
 - Os dados ficam no volume `sqlserver-data`, por isso sobrevivem a reinicios do contentor.
 - A password nao e gravada em lado nenhum: guarde-a num gestor de passwords.

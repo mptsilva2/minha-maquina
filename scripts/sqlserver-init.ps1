@@ -33,5 +33,5 @@ podman run -d --name $name `
     $image
 if ($LASTEXITCODE -ne 0) { throw "podman run falhou." }
 
-Write-Host "SQL Server a arrancar. Ligue-se a localhost,1433 com o utilizador sa."
+Write-Host "SQL Server a arrancar. Ligue-se a 127.0.0.1,1433 com o utilizador sa."
 Write-Host "Se o contentor parar logo, veja: podman logs $name (normalmente a password nao cumpre os requisitos)."
